@@ -1,13 +1,31 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* index.css */
+/* Ya tienes estas directivas de Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Aseguramos que toda la página ocupe el 100% del alto */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Contenedor principal de la aplicación */
+.app-container {
+    position: relative;
+    height: 100%; /* Aseguramos que el contenedor ocupe el 100% de la pantalla */
+    display: flex; /* Flexbox para organizar su contenido */
+    flex-direction: column; /* El contenido se organiza verticalmente */
+}
+
+/* Estilos para el video de fondo */
+video#backgroundVideo {
+    position: fixed; /* Fijamos el video al fondo de la página */
+    top: 0;
+    left: 0;
+    width: 100%; /* Que cubra todo el ancho de la pantalla */
+    height: 100%; /* Que cubra todo el alto de la pantalla */
+    object-fit: cover; /* Hace que el video mantenga su proporción al ajustarse */
+    z-index: -1; /* Colocamos el video detrás del contenido */
 }
