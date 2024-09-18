@@ -11,7 +11,8 @@ const App = () => {
   const [accessToken, setAccessToken] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [playlistTracks, setPlaylistTracks] = useState([]);
- 
+  const [searchTerm, setSearchTerm] = useState(''); // Agregar el estado para el término de búsqueda
+  
   useEffect(() => {
     const token = Spotify.getAccessToken();
     if (token) {
@@ -56,21 +57,31 @@ const App = () => {
     });
   };
 
+  const resetPlaylist = () => {
+    setPlaylistTracks([]); // Limpia las canciones de la playlist
+    setSearchTerm(''); // Limpia el término de búsqueda
+  };
+
+  const resetSearch = () => {
+    setSearchResults([]); // Limpia los resultados de búsqueda
+    setSearchTerm(''); // Limpia el término de búsqueda
+  };
+
   if (!accessToken) {
     return (
       <section className="container mx-auto mt-10 px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <h1 className="text-6xl font-extrabold text-green-500 mb-6 animate-title">
-          Playlistfy
+          Listfy
         </h1>
         <article className="bg-gray-800 text-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto mb-6 mt-20">
-          <h2 className="text-3xl font-bold mb-4">Bienvenido a Playlistfy</h2>
+          <h2 className="text-3xl font-bold mb-4">Bienvenido a Listfy</h2>
           <p className="text-lg mb-4">
             Esta aplicación te permite crear una playlist personalizada agregando diferentes canciones 
             de los resultados de tus búsquedas en Spotify. Para comenzar, primero debes iniciar sesión 
             en tu cuenta de Spotify.
           </p>
           <p className="text-lg">
-            Haz clic en el botón de abajo para iniciar sesión y disfrutar de todas las funciones de Playlistfy.
+            Haz clic en el botón de abajo para iniciar sesión y disfrutar de todas las funciones de Listfy.
           </p>
         </article>
         <button
@@ -86,12 +97,12 @@ const App = () => {
   return (
     <div className="container mx-auto mt-10 px-4 sm:px-6 lg:px-8 relative z-10">
       <h1 className="text-4xl sm:text-6xl font-extrabold text-green-500 text-center mb-6 animate-title">
-        Playlistfy
+        Listfy
       </h1>
-      <SearchBar accessToken={accessToken} onSearch={handleSearch} />
+      <SearchBar accessToken={accessToken} onSearch={handleSearch} resetSearch={resetSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="flex flex-col md:flex-row justify-between mt-10 gap-6 md:gap-12">
-        <SearchResults tracks={searchResults} onAdd={addTrack} />
-        <Playlist playlistTracks={playlistTracks} onRemove={removeTrack} />
+        <SearchResults tracks={searchResults} onAdd={addTrack} resetSearch={resetSearch}/>
+        <Playlist playlistTracks={playlistTracks} onRemove={removeTrack} resetPlaylist={resetPlaylist} resetSearch={resetSearch}/>
       </div>
     </div>
   );

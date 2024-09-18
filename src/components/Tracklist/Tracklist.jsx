@@ -12,6 +12,7 @@ const Tracklist = ({ tracks, onAdd, onRemove, isRemoval }) => {
           onAdd={onAdd} 
           onRemove={onRemove} 
           isRemoval={isRemoval} // Pasamos `isRemoval` para indicar si es para eliminar
+
         />
       ))}
     </div>

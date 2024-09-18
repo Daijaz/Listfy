@@ -9,6 +9,13 @@ const Spotify = {
       return accessToken;
     }
 
+    // Verificar si el token ya está almacenado en sessionStorage
+    const storedToken = sessionStorage.getItem('spotify_access_token');
+    if (storedToken) {
+      accessToken = storedToken;
+      return accessToken;
+    }
+
     // Verificar si el token de acceso está en la URL
     const tokenMatch = window.location.href.match(/access_token=([^&]*)/);
     const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
@@ -17,15 +24,24 @@ const Spotify = {
       accessToken = tokenMatch[1];
       const expiresIn = Number(expiresInMatch[1]);
 
+      // Guardar el token en sessionStorage
+      sessionStorage.setItem('spotify_access_token', accessToken);
+
       // Limpiar los parámetros de la URL
-      window.setTimeout(() => (accessToken = ''), expiresIn * 1000);
+      window.setTimeout(() => {
+        accessToken = '';
+        sessionStorage.removeItem('spotify_access_token'); // Eliminar token de sessionStorage
+      }, expiresIn * 1000);
       window.history.pushState('Access Token', null, '/');
       return accessToken;
     } else {
-      // Redirigir al usuario para autenticarse en Spotify
-      const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
-      window.location = accessUrl;
+      return null;
     }
+  },
+
+  redirectToSpotify() {
+    const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+    window.location = accessUrl;
   },
 
   async savePlaylist(playlistName, trackUris) {

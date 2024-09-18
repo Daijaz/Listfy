@@ -1,3 +1,4 @@
+// Playlist.jsx
 import React, { useState } from 'react';
 import Swal from 'sweetalert2'; // Importar SweetAlert2
 import Tracklist from '../Tracklist/Tracklist';
@@ -6,7 +7,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'; // Importar el ícon
 import Spotify from '../../utils/Spotify'; // Importar el módulo Spotify
 import '../../styles/index.css'; // Asegúrate de importar el archivo CSS
 
-const Playlist = ({ playlistTracks, onRemove }) => {
+const Playlist = ({playlistTracks, onRemove, resetPlaylist, resetSearch}) => {
   const [playlistName, setPlaylistName] = useState('Mi Playlist'); // Estado para el nombre de la playlist
   const [isEditing, setIsEditing] = useState(false); // Estado para alternar entre edición y vista
 
@@ -27,6 +28,21 @@ const Playlist = ({ playlistTracks, onRemove }) => {
 
   // Método para guardar la playlist en Spotify
   const handleSave = () => {
+    // Verificar si la playlist está vacía
+    if (playlistTracks.length === 0) {
+      // Mostrar alerta indicando que la playlist está vacía
+      Swal.fire({
+        title: 'No se puede guardar la playlist',
+        text: 'Tu playlist no tiene ninguna canción. Agrega canciones antes de guardar.',
+        icon: 'error',
+        customClass: {
+          popup: 'black-swal',
+        },
+        confirmButtonColor: '#d33',
+      });
+      return; // Salir de la función si la playlist está vacía
+    }
+
     // Guardar la playlist en Spotify
     Spotify.savePlaylist(playlistName, playlistTracks.map(track => track.uri))
       .then(() => {
@@ -40,8 +56,11 @@ const Playlist = ({ playlistTracks, onRemove }) => {
           },
           confirmButtonColor: '#3085d6',
         }).then(() => {
-          // Recargar la página después de cerrar la alerta
-          window.location.reload();
+          // Limpiar el estado de la playlist sin recargar la página
+          setPlaylistName('Mi Playlist');
+          // Aquí es donde puedes limpiar el estado de las pistas si quieres:
+          resetPlaylist();
+          resetSearch();
         });
       })
       .catch(error => {

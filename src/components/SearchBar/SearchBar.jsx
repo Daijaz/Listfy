@@ -1,9 +1,8 @@
 // SearchBar.jsx
-import React, { useState } from 'react';
+import React from 'react';
 
-const SearchBar = ({ accessToken, onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-
+const SearchBar = ({ accessToken, onSearch, searchTerm, setSearchTerm }) => { // Elimina `resetSearch` de aquí
+  
   const searchSpotify = async () => {
     if (!accessToken) return;
 
@@ -37,7 +36,7 @@ const SearchBar = ({ accessToken, onSearch }) => {
   };
 
   const handleSearch = () => {
-    searchSpotify();
+    searchSpotify(); // Realizar la búsqueda sin limpiar los resultados
   };
 
   return (
@@ -46,12 +45,12 @@ const SearchBar = ({ accessToken, onSearch }) => {
         type="text"
         value={searchTerm}
         onChange={handleChange}
-        className="w-full px-4 py-2 rounded-l-lg bg-gray-800 text-white "
+        className="w-full px-4 py-2 rounded-l-lg bg-gray-800 text-white"
         placeholder="Ingresa una canción"
       />
       <button
         onClick={handleSearch}
-        className="px-4 py-3 bg-green-500 text-white rounded-r-lg hover:bg-green-600"
+        className="px-4 py-3 bg-green-500 text-white rounded-r-lg rounded-l-lg hover:bg-green-600"
       >
         Buscar
       </button>
