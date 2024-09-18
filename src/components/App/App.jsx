@@ -11,7 +11,7 @@ const App = () => {
   const [accessToken, setAccessToken] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [playlistTracks, setPlaylistTracks] = useState([]);
-
+ 
   useEffect(() => {
     const token = Spotify.getAccessToken();
     if (token) {
