@@ -104,6 +104,7 @@ listfy/
 │   └── index.js
 │
 └── README.md
+```
 
 ## 💛 Contribuciones
 
@@ -114,10 +115,6 @@ listfy/
 3. Realiza tus cambios y haz commit (`git commit -am 'Agrega nueva característica'`).
 4. Sube tus cambios (`git push origin feature-nueva-caracteristica`).
 5. Abre un Pull Request.
-
-## 📋 Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ## 📞 Contacto
 
