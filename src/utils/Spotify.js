@@ -1,6 +1,6 @@
 // Spotify.js
 const clientId = 'ce73c4c0bc2e41aaa0666b3290b99b8c'; // Reemplaza con tu Client ID de Spotify
-const redirectUri = 'https://listfynow.netlify.app/'; // Reemplaza con tu URL de redirección
+const redirectUri = 'https://listfynow.netlify.app/callback/'; // Reemplaza con tu URL de redirección
 let accessToken;
 
 const Spotify = {
