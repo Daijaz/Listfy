@@ -123,7 +123,7 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 
 - **Autor**: [Miguel Osorio](https://github.com/Daijaz)
 - **Correo**: [miguelosorio1904@gmail.com]
-- **LinkedIn**: [Tu LinkedIn](https://www.linkedin.com/in/miguel-%C3%A1ngel-osorio-londo%C3%B1o-940218206/)
+- **LinkedIn**: (https://www.linkedin.com/in/miguel-%C3%A1ngel-osorio-londo%C3%B1o-940218206/)
 
 ## 🌐 Enlaces
 
