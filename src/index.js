@@ -7,14 +7,6 @@ import App from './components/App/App'; // Importamos el componente principal de
 const Root = () => {
   return (
     <div className="app-container"> {/* Este contenedor abarca toda la aplicación */}
-      <video
-        id="backgroundVideo" // El video de fondo
-        autoPlay // Reproduce automáticamente
-        loop // Se repite en bucle
-        muted // Elimina el sonido del video
-      >
-        <source src="/videos/waves.mp4" type="video/mp4" /> {/* Fuente del video */}
-      </video>
       <div className="main-content"> {/* Este contenedor asegura que el contenido principal ocupe el espacio necesario */}
         <App /> {/* Este es el componente principal donde está el resto del contenido */}
       </div>

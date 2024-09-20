@@ -13,22 +13,14 @@ html, body, #root {
 
 /* Contenedor principal de la aplicación */
 .app-container {
+    background-image: url('../../public/background.jpg');
+    background-size: cover; /* Para que la imagen ocupe toda la pantalla */
+    background-position: center; /* Para centrar la imagen */
     position: relative;
-    height: 100%; /* Aseguramos que el contenedor ocupe el 100% de la pantalla */
+    /* Aseguramos que el contenedor ocupe el 100% de la pantalla */
     display: flex; /* Flexbox para organizar su contenido */
     flex-direction: column; /* El contenido se organiza verticalmente */
     min-height: 100vh; /* Al menos 100% de la altura de la ventana */
-}
-
-/* Estilos para el video de fondo */
-video#backgroundVideo {
-    position: fixed; /* Fijamos el video al fondo de la página */
-    top: 0;
-    left: 0;
-    width: 100%; /* Que cubra todo el ancho de la pantalla */
-    height: 100%; /* Que cubra todo el alto de la pantalla */
-    object-fit: cover; /* Hace que el video mantenga su proporción al ajustarse */
-    z-index: -1; /* Colocamos el video detrás del contenido */
 }
 
 /* Contenido principal (App) debe crecer si es necesario */
